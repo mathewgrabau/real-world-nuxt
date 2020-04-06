@@ -6,7 +6,7 @@
     </nav>
     <span>&nbsp;|</span>
     <nav>
-      <nuxt-link to="/create">Create</nuxt-link>
+      <nuxt-link to="/event/create">Create</nuxt-link>
     </nav>
   </div>
 </template>
