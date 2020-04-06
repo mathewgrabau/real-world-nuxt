@@ -11,6 +11,21 @@ import NavBar from '~/components/NavBar.vue'
 export default {
   components: {
     NavBar
+  },
+  // The %s in the title is a template, and hence using the titleTemplate, reduces required duplication as we move forward.
+  head() {
+    return {
+      titleTemplate: '%s - Real World Events',
+      meta: [
+        {
+          // hid ensures there is just one
+          hid: 'description',
+          name: 'description',
+          content:
+            'Where you can find all the events taking place in your neighbourhood'
+        }
+      ]
+    }
   }
 }
 </script>

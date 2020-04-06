@@ -4,6 +4,7 @@
     <nav>
       <nuxt-link to="/">List</nuxt-link>
     </nav>
+    <span>&nbsp;|</span>
     <nav>
       <nuxt-link to="/create">Create</nuxt-link>
     </nav>
