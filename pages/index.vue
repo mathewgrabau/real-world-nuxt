@@ -17,12 +17,20 @@ import EventCard from '@/components/EventCard.vue'
 export default {
   components: { EventCard },
   // Using ES6 destructuring to unpack the context
-  asyncData({ $axios }) {
-    return $axios.get('http://localhost:3000/events').then((response) => {
-      return {
-        events: response.data
-      }
-    })
+  asyncData({ $axios, error }) {
+    return $axios
+      .get('http://localhost:3000/events')
+      .then((response) => {
+        return {
+          events: response.data
+        }
+      })
+      .catch((e) => {
+        error({
+          statusCode: 503,
+          message: 'Unable to fetch events at this time. Please try again.'
+        })
+      })
   },
   head() {
     return {
