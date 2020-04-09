@@ -13,15 +13,16 @@
 
 <script>
 import EventCard from '@/components/EventCard.vue'
+import EventService from '@/services/EventService.js'
 
 export default {
   components: { EventCard },
   // Using ES6 destructuring to unpack the context
   // async makes the function automatically return a Promise
-  async asyncData({ $axios, error }) {
+  async asyncData({ error }) {
     try {
       // Destructuring even simplifies it more.
-      const { data } = await $axios.get('http://localhost:3000/events')
+      const { data } = await EventService.getEvents()
       return { events: data }
     } catch (e) {
       error({
