@@ -12,18 +12,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import EventCard from '@/components/EventCard.vue'
-import EventService from '@/services/EventService.js'
 
 export default {
   components: { EventCard },
   // Using ES6 destructuring to unpack the context
   // async makes the function automatically return a Promise
-  async asyncData({ error }) {
+  // fetch is the one to use with the setup in play here
+  async fetch({ store, error }) {
     try {
-      // Destructuring even simplifies it more.
-      const { data } = await EventService.getEvents()
-      return { events: data }
+      await store.dispatch('events/fetchEvents')
     } catch (e) {
       error({
         statusCode: 503,
@@ -31,6 +30,9 @@ export default {
       })
     }
   },
+  computed: mapState({
+    events: (state) => state.events.events
+  }),
   head() {
     return {
       title: 'Event Listing'
